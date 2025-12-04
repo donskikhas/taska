@@ -7,6 +7,7 @@ import { TelegramSection } from './components/TelegramSection';
 import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
+import { ContactForm } from './components/ContactForm';
 import { Button } from './components/Button';
 import { ArrowRight } from 'lucide-react';
 
@@ -22,8 +23,87 @@ const App: React.FC = () => {
       <main>
         <Hero onOpenModal={openModal} />
         <Features />
+
+        {/* Inline CTA after Features */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 rounded-3xl border border-gray-200 bg-gray-50/70 px-6 md:px-10 py-8 md:py-10 shadow-sm">
+              <div className="text-left max-w-xl">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  Посмотреть демо модулей Taska
+                </h3>
+                <p className="text-gray-500 text-sm md:text-base">
+                  Оставьте контакты для персональной презентации или откройте онлайн-демо прямо сейчас.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <Button 
+                  onClick={openModal}
+                  className="w-full sm:w-auto"
+                  icon={<ArrowRight size={18} />}
+                >
+                  Оставить заявку
+                </Button>
+                <a
+                  href="https://demo.taska.uz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
+                  <Button
+                    variant="secondary"
+                    className="w-full sm:w-auto"
+                  >
+                    Демо
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <ProcessSection />
+
+        {/* Inline CTA после процессов */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 rounded-3xl border border-gray-200 bg-gray-50/70 px-6 md:px-10 py-8 md:py-10 shadow-sm">
+              <div className="text-left max-w-xl">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                  Автоматизировать ваши процессы в Taska
+                </h3>
+                <p className="text-gray-500 text-sm md:text-base">
+                  Покажем, как ваши текущие бизнес-процессы можно собрать в визуальном редакторе Taska.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <Button 
+                  onClick={openModal}
+                  className="w-full sm:w-auto"
+                  icon={<ArrowRight size={18} />}
+                >
+                  Оставить контакты
+                </Button>
+                <a
+                  href="https://demo.taska.uz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
+                  <Button
+                    variant="secondary"
+                    className="w-full sm:w-auto"
+                  >
+                    Демо
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <TelegramSection onOpenModal={openModal} />
+        <ContactForm />
         <FAQ />
         
         {/* Redesigned CTA Section - Now at the bottom */}
@@ -44,14 +124,27 @@ const App: React.FC = () => {
                       Получите персональный план внедрения системы и расчет стоимости за 15 минут.
                     </p>
                  </div>
-                 <div className="shrink-0">
+                 <div className="shrink-0 flex flex-col sm:flex-row gap-4">
                    <Button 
                       onClick={openModal} 
-                      className="bg-white !text-brand hover:bg-gray-100 border-none shadow-xl px-8 py-4 text-lg"
+                      className="bg-white !text-brand hover:bg-gray-100 border-none shadow-xl px-8 py-4 text-lg w-full sm:w-auto"
                       icon={<ArrowRight size={20}/>}
                    >
                       Обсудить проект
                    </Button>
+                   <a
+                     href="https://demo.taska.uz"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="w-full sm:w-auto"
+                   >
+                     <Button
+                       variant="outline"
+                       className="w-full sm:w-auto border-white/40 bg-transparent text-white hover:bg-white/10"
+                     >
+                       Демо
+                     </Button>
+                   </a>
                  </div>
                </div>
              </div>

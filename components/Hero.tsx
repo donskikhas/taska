@@ -50,9 +50,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
             <Button size="md" className="w-full sm:w-auto min-w-[160px]" icon={<ArrowRight size={18} />} onClick={onOpenModal}>
               Заказать систему
             </Button>
-            <Button variant="secondary" size="md" className="w-full sm:w-auto min-w-[160px]" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth'})}>
-              Смотреть модули
-            </Button>
+            <a
+              href="https://demo.taska.uz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
+              <Button
+                variant="secondary"
+                size="md"
+                className="w-full sm:w-auto min-w-[160px]"
+              >
+                Демо
+              </Button>
+            </a>
           </motion.div>
 
           {/* Abstract UI Visualization */}
