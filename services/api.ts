@@ -1,4 +1,4 @@
-import { collection, addDoc, serverTimestamp, updateDoc } from "firebase/firestore"; 
+import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore"; 
 import { db } from "../firebase";
 import { Lead } from "../types";
 import { trackMetrikaGoal } from "./metrics";
@@ -85,9 +85,13 @@ export const submitLead = async (leadData: Lead): Promise<boolean> => {
     const cleanedDealData = removeUndefinedFields(dealData);
 
     if (firestore) {
-      const docRef = await addDoc(collection(firestore, "deals"), cleanedDealData);
-      // Сохраняем id документа внутрь самой сделки, как в tipa.uz
-      await updateDoc(docRef, { id: docRef.id });
+      // Создаем документ с заранее сгенерированным id,
+      // чтобы записать его и в поле id (rules: allow create, update запрещён)
+      const dealsCollection = collection(firestore, "deals");
+      const docRef = doc(dealsCollection);
+      const payload = { id: docRef.id, ...cleanedDealData };
+
+      await setDoc(docRef, payload);
 
       if (process.env.NODE_ENV === "development") {
         console.log("✅ Lead created successfully with ID:", docRef.id);

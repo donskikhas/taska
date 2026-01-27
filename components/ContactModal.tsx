@@ -3,6 +3,7 @@ import { X, Send, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './Button';
 import { submitLead } from '../services/api';
+import { formatUzPhone } from '../services/phone';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -99,9 +100,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                       <input 
                         required
                         value={contact}
-                        onChange={(e) => setContact(e.target.value)}
+                        onChange={(e) => setContact(formatUzPhone(e.target.value))}
                         type="tel" 
-                        placeholder="Telegram или телефон"
+                        inputMode="tel"
+                        placeholder="+998 90 123 45 67"
                         className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-brand/20 focus:border-brand/50 outline-none transition-all"
                       />
                       <textarea 

@@ -3,6 +3,7 @@ import { Button } from './Button';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle, Smartphone, Clock, LayoutDashboard } from 'lucide-react';
 import { submitLead } from '../services/api';
+import { formatUzPhone } from '../services/phone';
 
 export const ContactForm: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -108,10 +109,11 @@ export const ContactForm: React.FC = () => {
                     <input 
                       required
                       value={contact}
-                      onChange={(e) => setContact(e.target.value)}
+                      onChange={(e) => setContact(formatUzPhone(e.target.value))}
                       type="tel" 
+                      inputMode="tel"
                       className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-brand/20 focus:border-brand/50 outline-none transition-all focus:bg-white"
-                      placeholder="Ваш Telegram / Телефон"
+                      placeholder="+998 90 123 45 67"
                     />
                   </div>
                   <div>
