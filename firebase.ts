@@ -1,33 +1,26 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getFirestore, Firestore } from "firebase/firestore";
 
-// TODO: Replace the following with your app's Firebase project configuration
-// You can get this from the Firebase Console -> Project Settings -> General -> Your apps
+// Firebase configuration for tipa-task-manager project
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_HERE",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
-};
+  apiKey: "AIzaSyBgDuPin7aSOBfkmA0ENpiiQZAbbj_Fl4g",
+  authDomain: "tipa-task-manager.firebaseapp.com",
+  projectId: "tipa-task-manager",
+  storageBucket: "tipa-task-manager.firebasestorage.app",
+  messagingSenderId: "529094386000",
+  appId: "1:529094386000:web:223840a2126ab0b1a88c55",
+} as const;
 
-// Initialize Firebase
-// We wrap this in a try-catch to prevent the app from crashing if config is missing during dev
-let db: any = null;
+let app;
+let db: Firestore | null = null;
 
 try {
-  // Check if config is filled (simple check)
-  if (firebaseConfig.apiKey !== "YOUR_API_KEY_HERE") {
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-  } else {
-    // Config is missing, but that's okay for landing page mode (Telegram only)
-    // console.log("Running in Telegram-only mode");
-  }
+  // Avoid re-initializing in dev/hot-reload
+  app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+  db = getFirestore(app);
 } catch (error) {
-  console.error("Firebase initialization error:", error);
+  console.error("❌ Firebase initialization failed:", error);
+  db = null;
 }
 
 export { db };
